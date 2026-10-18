@@ -24,6 +24,7 @@ TEST_MESSAGE = {
     "zh": "## ✅ TechTrend 推送测试\n\n收到这条消息，说明这个渠道已配置成功。每日简报会以同样的方式送达。",
     "en": "## ✅ TechTrend test message\n\nIf you can read this, the channel works. Daily briefings will arrive the same way.",
     "ja": "## ✅ TechTrend テスト送信\n\nこのメッセージが届いていれば、チャンネルの設定は完了です。毎日のブリーフィングも同じ形で届きます。",
+    "ru": "## ✅ TechTrend: тестовое сообщение\n\nЕсли ты это читаешь, канал настроен. Ежедневная сводка будет приходить так же.",
 }
 
 

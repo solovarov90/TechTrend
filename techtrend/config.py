@@ -73,6 +73,8 @@ LANGUAGES = {
            "post_title": "Daily Tech Intel"},
     "ja": {"name": "日本語", "daily_title": "デイリー技術インテル", "weekly_title": "週刊技術トレンド",
            "post_title": "本日の技術インテリジェンス"},
+    "ru": {"name": "русский", "daily_title": "Техсводка дня", "weekly_title": "Техтренды недели",
+           "post_title": "Техсводка дня"},
 }
 
 

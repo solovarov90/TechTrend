@@ -3,24 +3,24 @@
 # secrets, or as environment variables when running locally (see .env.example).
 
 report:
-  # Language of the briefing and the push messages: zh | en | ja
-  language: zh
+  # Language of the briefing and the push messages: zh | en | ja | ru
+  language: ru
   # Optional: what your readers care about. Steers which items the model picks
   # and how it frames them. Leave empty for a general engineering audience.
-  focus: ""
+  focus: "Читатель: эксперты и малый бизнес в России, которые внедряют ИИ в работу, и автор коротких видео про ИИ для бизнеса (ii.systema). Важнее всего: практичные применения ИИ в бизнесе, агенты и автоматизация, инструменты для контента и Telegram-ботов, заметные релизы моделей; каждый пункт полезно оценивать как тему для короткого ролика."
   # Skip the day (no report, no push) when fewer new items than this were found.
   min_new_items: 5
 
 llm:
   # Any OpenAI-compatible endpoint. The env vars OPENAI_MODEL / OPENAI_BASE_URL
   # (GitHub secrets or variables) override these two values.
-  model: deepseek-v4-flash
-  base_url: https://api.deepseek.com
+  model: gemini-2.5-flash
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
   # DeepSeek-style reasoning switch, sent as {"thinking": {"type": ...}}.
   #   true  = reason before writing (better analysis, more tokens)
   #   false = answer directly
   #   null  = don't send the parameter (use this for OpenAI, Gemini, Claude, …)
-  thinking: true
+  thinking: null
   # Token budget. With thinking on, reasoning and the report share it.
   max_tokens: 7000
 

@@ -3,7 +3,7 @@ run-name: "📡 Daily Intel · ${{ github.run_number }} · by ${{ github.actor }
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 00:00 UTC (08:00 in UTC+8). Change to suit your timezone.
+    - cron: '0 4 * * *'   # 04:00 UTC (07:00 Moscow). Change to suit your timezone.
   workflow_dispatch:
 
 permissions:
@@ -74,6 +74,7 @@ jobs:
           DINGTALK_SECRET:      ${{ secrets.DINGTALK_SECRET }}
           TELEGRAM_BOT_TOKEN:   ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:     ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_THREAD_ID:   ${{ secrets.TELEGRAM_THREAD_ID }}
           DISCORD_WEBHOOK_URL:  ${{ secrets.DISCORD_WEBHOOK_URL }}
           SLACK_WEBHOOK_URL:    ${{ secrets.SLACK_WEBHOOK_URL }}
           SMTP_HOST:            ${{ secrets.SMTP_HOST }}

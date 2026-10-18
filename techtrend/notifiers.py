@@ -177,10 +177,14 @@ def send_dingtalk(title: str, text: str, env: dict):
 def send_telegram(title: str, text: str, env: dict):
     url = f"https://api.telegram.org/bot{env['TELEGRAM_BOT_TOKEN']}/sendMessage"
     for part in chunk(f"## {title}\n\n{text}", 3500):
-        resp = _post_json(url, {
+        payload = {
             "chat_id": env["TELEGRAM_CHAT_ID"], "text": to_telegram_html(part),
             "parse_mode": "HTML", "disable_web_page_preview": True,
-        })
+        }
+        # Optional: post into a forum topic of a supergroup (TELEGRAM_THREAD_ID = message_thread_id).
+        if env.get("TELEGRAM_THREAD_ID"):
+            payload["message_thread_id"] = int(env["TELEGRAM_THREAD_ID"])
+        resp = _post_json(url, payload)
         _expect(resp.json().get("ok") is True, resp)
 
 
@@ -248,7 +252,7 @@ CHANNELS = [
     Channel("wecom",      "WeCom group bot",          ("WECOM_WEBHOOK_URL",), (), send_wecom),
     Channel("feishu",     "Feishu / Lark group bot",  ("FEISHU_WEBHOOK_URL",), ("FEISHU_SECRET",), send_feishu),
     Channel("dingtalk",   "DingTalk group bot",       ("DINGTALK_WEBHOOK_URL",), ("DINGTALK_SECRET",), send_dingtalk),
-    Channel("telegram",   "Telegram",                 ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"), (), send_telegram),
+    Channel("telegram",   "Telegram",                 ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"), ("TELEGRAM_THREAD_ID",), send_telegram),
     Channel("discord",    "Discord",                  ("DISCORD_WEBHOOK_URL",), (), send_discord),
     Channel("slack",      "Slack",                    ("SLACK_WEBHOOK_URL",), (), send_slack),
     Channel("email",      "Email (SMTP)",             ("SMTP_HOST", "SMTP_USERNAME", "SMTP_PASSWORD", "EMAIL_TO"),
